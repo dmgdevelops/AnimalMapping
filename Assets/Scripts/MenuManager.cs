@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     private float mouseSensitivity;
     [SerializeField]
     private Transform playerBody;
-    private float xRotation = 0f;
+    //private float xRotation = 0f;
 
 
     //void Start()

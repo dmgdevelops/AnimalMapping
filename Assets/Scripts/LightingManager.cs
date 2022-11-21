@@ -12,10 +12,13 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private Material two;
     [SerializeField] private Material three;
     //Variables
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
+    [SerializeField, Range(0, 180)] public float TimeOfDay; //cycle last 10 minutes
 
 
 
+    // below all the numbers are hardcoded so that the cycle lasts 10 minutes
+    // the left product in the conditional represents the time of day in a 24 hour system
+    // the right product represents how many seconds wihtin each hour for a 10 minute cycle
 
     private void Update()
     {
@@ -25,16 +28,16 @@ public class LightingManager : MonoBehaviour
         if(Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24; //Clamp between 0-24
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay %= 180; //Clamp between 0-24
+            UpdateLighting(TimeOfDay / 180f);
 
-            if(TimeOfDay > 5 && TimeOfDay < 7)
+            if(TimeOfDay > 5*7.5 && TimeOfDay < 7*7.5)
             {
                 RenderSettings.skybox = two;
-            } else if(TimeOfDay > 7 && TimeOfDay < 17)
+            } else if(TimeOfDay > 7*7.5 && TimeOfDay < 17*2.5)
             {
                 RenderSettings.skybox = three;
-            } else if(TimeOfDay > 17 && TimeOfDay < 19)
+            } else if(TimeOfDay > 17*7.5 && TimeOfDay < 19*7.5)
             {
                 RenderSettings.skybox = two;
             }
@@ -45,8 +48,13 @@ public class LightingManager : MonoBehaviour
         }
         else
         {
-            UpdateLighting(TimeOfDay / 24f);
+            UpdateLighting(TimeOfDay / 180f);
         }
+    }
+
+    public float getTimeOfDay()
+    {
+        return TimeOfDay;
     }
 
 

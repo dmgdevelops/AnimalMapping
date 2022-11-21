@@ -5,7 +5,31 @@ using UnityEngine.AI;
 [DefaultExecutionOrder(1)]
 public class FoxUnit : MonoBehaviour
 {
+    Animator animator;
     public NavMeshAgent Agent;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        // reached to destination
+        //(!Agent.pathPending && !Agent.hasPath)
+        if (Agent.hasPath)
+        {
+            animator.SetBool("Walk", true);
+            Debug.Log("Walk = true");
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+            Debug.Log("Walk = false");
+        }
+         
+    }
+
 
     private void Awake()
     {

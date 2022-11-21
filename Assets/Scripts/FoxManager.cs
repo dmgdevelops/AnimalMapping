@@ -54,6 +54,14 @@ public class FoxManager : MonoBehaviour
     }
 
 
+    public LightingManager _LM;
+
+
+
+
+
+
+    bool Move;
     private static FoxManager _instance;
     public static FoxManager Instance
     {
@@ -89,6 +97,45 @@ public class FoxManager : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+
+    /* the following code that is commented did not work since by the time we set the boolean Move false it will get
+     * reset to true and keep resetting the destinations of the agents causing them to stay in place
+     */
+
+    //private void Update()
+    //{
+    //    if (_LM.getTimeOfDay() > 5 * 7.5 && _LM.getTimeOfDay() < 7 * 7.5)
+    //    {
+    //        Move = true;
+    //    }
+    //    else if (_LM.getTimeOfDay() > 7 * 7.5 && _LM.getTimeOfDay() < 17 * 7.5)
+    //    {
+    //        Move = true;
+    //    }
+    //    else if (_LM.getTimeOfDay() > 17 * 7.5 && _LM.getTimeOfDay() < 19 * 7.5)
+    //    {
+    //        Move = true;
+    //    } else
+    //    {
+    //        Move = true;
+    //    }
+
+    //}
+
+
+
+    //private void StartAgentMethods()
+    //{
+    //    if (Move)
+    //    {
+    //        Move = false;
+    //        GotoNextPoint();
+    //        StartCoroutine(MakeAgentsCircleTarget());
+    //    }
+    //}
+
+
 
     private void OnGUI()
     {
