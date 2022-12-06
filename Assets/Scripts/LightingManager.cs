@@ -12,7 +12,7 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private Material two;
     [SerializeField] private Material three;
     //Variables
-    [SerializeField, Range(0, 180)] public float TimeOfDay; //cycle last 10 minutes
+    [SerializeField, Range(0, 300)] public int TimeOfDay; //cycle last 10 minutes
 
 
 
@@ -25,19 +25,37 @@ public class LightingManager : MonoBehaviour
         if (Preset == null)
             return;
 
-        if(Application.isPlaying)
-        {
-            TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 180; //Clamp between 0-24
-            UpdateLighting(TimeOfDay / 180f);
+        
+    }
 
-            if(TimeOfDay > 5*7.5 && TimeOfDay < 7*7.5)
+    private void Start()
+    {
+        StartCoroutine(TimeCycle());
+    }
+
+    
+
+    IEnumerator TimeCycle()
+    {
+        
+
+ 
+        while(Application.isPlaying)
+        {
+            yield return new WaitForSeconds(1);
+            TimeOfDay += 1;
+            TimeOfDay %= 300; //Clamp between 0-24
+            UpdateLighting(TimeOfDay / 300f);
+
+            if (TimeOfDay >= 5 * 12.5 && TimeOfDay < 7 * 12.5)
             {
                 RenderSettings.skybox = two;
-            } else if(TimeOfDay > 7*7.5 && TimeOfDay < 17*2.5)
+            }
+            else if (TimeOfDay >= 7 * 12.5 && TimeOfDay < 17 * 12.5)
             {
                 RenderSettings.skybox = three;
-            } else if(TimeOfDay > 17*7.5 && TimeOfDay < 19*7.5)
+            }
+            else if (TimeOfDay >= 17 * 12.5 && TimeOfDay < 19 * 12.5)
             {
                 RenderSettings.skybox = two;
             }
@@ -45,12 +63,20 @@ public class LightingManager : MonoBehaviour
             {
                 RenderSettings.skybox = one;
             }
+
+            
         }
-        else
-        {
-            UpdateLighting(TimeOfDay / 180f);
-        }
+            
+        //}
+        //else
+        //{
+        //    UpdateLighting(TimeOfDay / 180f);
+        //}
     }
+
+
+
+
 
     public float getTimeOfDay()
     {
