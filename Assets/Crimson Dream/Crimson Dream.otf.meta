@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 179fc6576504b4f2290300baa317ed1a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Crimson Dream
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 056263583917c47a6b8a2a04cb4f3fa5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
